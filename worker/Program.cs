@@ -21,10 +21,10 @@ namespace Worker
                 var dbPass = Environment.GetEnvironmentVariable("DB_PASS");
                 var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
                 var redisHost = Environment.GetEnvironmentVariable("REDIS_HOST");
-                
+
                 var connectionString = $"Server={dbHost};Username={dbUser};Password={dbPass};";
                 var pgsql = OpenDbConnection(connectionString);
-                
+
                 //var pgsql = OpenDbConnection("Server=db;Username=postgres;Password=postgres;");
                 var redisConn = OpenRedisConnection($"{redisHost}");
                 var redis = redisConn.GetDatabase();
@@ -59,7 +59,7 @@ namespace Worker
                             // var dbUser = Environment.GetEnvironmentVariable("DB_USER");
                             // var dbPass = Environment.GetEnvironmentVariable("DB_PASS");
                             // var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-                            
+
                             // var connectionString = $"Server={dbHost};Username={dbUser};Password={dbPass};";
                             pgsql = OpenDbConnection(connectionString);
 
@@ -169,3 +169,6 @@ namespace Worker
         }
     }
 }
+
+
+// first commit

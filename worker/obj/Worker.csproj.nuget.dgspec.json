@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/root/iac-code/iac/week-5/sourcecode/vote/worker/Worker.csproj": {}
+    "/root/Projects/vote/worker/Worker.csproj": {}
   },
   "projects": {
-    "/root/iac-code/iac/week-5/sourcecode/vote/worker/Worker.csproj": {
+    "/root/Projects/vote/worker/Worker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/root/iac-code/iac/week-5/sourcecode/vote/worker/Worker.csproj",
+        "projectUniqueName": "/root/Projects/vote/worker/Worker.csproj",
         "projectName": "Worker",
-        "projectPath": "/root/iac-code/iac/week-5/sourcecode/vote/worker/Worker.csproj",
+        "projectPath": "/root/Projects/vote/worker/Worker.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/root/iac-code/iac/week-5/sourcecode/vote/worker/obj/",
+        "outputPath": "/root/Projects/vote/worker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/root/.nuget/NuGet/NuGet.Config"
