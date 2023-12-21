@@ -1,4 +1,5 @@
 // week-6 Demo1 使用 Jenkins 实施持续部署
+// 使用kubectl 直接在k8s上修改CRD的Image，使其对应新的TAG
 pipeline {
     agent none
     stages {

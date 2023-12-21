@@ -1,3 +1,4 @@
+// 使用包含git、yq命令的Pod；
 pipeline {
   agent {
     kubernetes {
@@ -20,24 +21,27 @@ spec:
     }
   }
 
+  // 定义Jenkins的Pipeline的形参；
   parameters {
     string(name: 'IMAGE_TAG', defaultValue: 'latest', description: 'The image tag')
   }
 
+  // 拉取helm应用定义代码
   stages {
     stage('Checkout') {
       steps {
         container('git') {
-          withCredentials([usernamePassword(credentialsId: 'github-pull-secret', usernameVariable: 'username', passwordVariable: 'password')]) {  
+          withCredentials([usernamePassword(credentialsId: 'github-pull-secret', usernameVariable: 'username', passwordVariable: 'password')]) {
             checkout([$class: 'GitSCM',
               branches: [[name: 'main']],
-              userRemoteConfigs: [[credentialsId: 'github-pull-secret', url: 'https://github.com/devops-advanced-camp/vote-helm.git']]
+              userRemoteConfigs: [[credentialsId: 'github-pull-secret', url: 'https://github.com/gitkeystone/vote-helm.git']]
             ])
           }
         }
       }
     }
 
+    // 使用yq修改应用定义
     stage('Update values.yaml') {
       steps {
         container('yq') {
@@ -48,17 +52,18 @@ spec:
       }
     }
 
+    // 定义完毕后，提交&推送 -> Git仓库；
     stage('Commit and Push') {
       steps {
         container('git') {
-          withCredentials([usernamePassword(credentialsId: 'github-pull-secret', usernameVariable: 'username', passwordVariable: 'password')]) {  
+          withCredentials([usernamePassword(credentialsId: 'github-pull-secret', usernameVariable: 'username', passwordVariable: 'password')]) {
             sh """
             git config --global --add safe.directory "*"
             git status
             git config user.name "jenkins"
             git config user.email "jenkins@gmail.com"
             git commit -am "jenkins update values.yaml"
-            git push https://${username}:${password}@github.com/devops-advanced-camp/vote-helm.git HEAD:main
+            git push https://${username}:${password}@github.com/gitkeystone/vote-helm.git HEAD:main
             """
           }
         }
@@ -66,3 +71,6 @@ spec:
     }
   }
 }
+
+
+// 本Pipeline执行完毕后，Argo在一定周期后，将会发现应用定义有修改，会触发同步操作；
