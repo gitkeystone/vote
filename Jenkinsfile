@@ -50,7 +50,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd result
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure
                         '''
                     }
                 }
@@ -106,7 +106,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd vote
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure
                         '''
                     }
                 }
@@ -162,7 +162,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd worker
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure --build-arg "TARGETPLATFORM='linux/amd64'" --build-arg "BUILDPLATFORM='linux/amd64'"
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure --build-arg "TARGETPLATFORM='linux/amd64'" --build-arg "BUILDPLATFORM='linux/amd64'"
                         '''
                     }
                 }
