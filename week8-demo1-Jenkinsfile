@@ -55,6 +55,7 @@ spec:
                             when {
                                 anyOf{
                                     changeset "**/result/*.*"
+                                    changeset "**/result/views/*.*"
                                     expression{env.BUILD_NUMBER == '1'}
                                     expression {
                                         return env.CHANGE_ID != null

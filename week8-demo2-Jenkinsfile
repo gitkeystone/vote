@@ -1,9 +1,10 @@
+// week8-demo2-Jenkinsfile
 pipeline {
     parameters {
         string defaultValue: '', description: 'Please provide: Jira release id', name: 'RELEASE_ID', trim: true
         string defaultValue: '', description: 'Please provide: result image tag (optional)', name: 'RESULT_IMAGE_TAG', trim: true
         string defaultValue: '', description: 'Please provide: vote image tag (optional)', name: 'VOTE_IMAGE_TAG', trim: true
-        string defaultValue: '', description: 'Please provide: worker image tag (optional)', name: 'WORKER_IMAGE_TAG', trim: true 
+        string defaultValue: '', description: 'Please provide: worker image tag (optional)', name: 'WORKER_IMAGE_TAG', trim: true
     }
 
     agent any
@@ -39,7 +40,7 @@ spec:
 """
                 }
             }
-            
+
             environment {
                 HARBOR_URL     = credentials('harbor-url')
                 RESULT_IMAGE="${HARBOR_URL}/vote/result"
@@ -111,7 +112,7 @@ spec:
                             echo "release_id is empty"
                             exit 1
                         fi
-        
+
                         RELEASE_DATE=`date +%Y-%m-%d`
                         BODY_DATA='{"releaseDate":"'$RELEASE_DATE'","released":"true"}'
                         URL="${JIRA_HOST_URL}/rest/api/2/version/${RELEASE_ID}"
@@ -124,5 +125,5 @@ spec:
                 }
             }
         }
-    }  
-}  
+    }
+}
